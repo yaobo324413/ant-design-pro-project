@@ -1,71 +1,35 @@
-import { urlToList } from '../_utils/pathTools';
-import { getFlatMenuKeys, getMenuMatchKeys } from './SiderMenu';
+import { getMeunMatcheys } from './SiderMenu';
 
-const menu = [
-  {
-    path: '/dashboard',
-    children: [
-      {
-        path: '/dashboard/name',
-      },
-    ],
-  },
-  {
-    path: '/userinfo',
-    children: [
-      {
-        path: '/userinfo/:id',
-        children: [
-          {
-            path: '/userinfo/:id/info',
-          },
-        ],
-      },
-    ],
-  },
+const meun = [
+  '/dashboard',
+  '/userinfo',
+  '/dashboard/name',
+  '/userinfo/:id',
+  '/userinfo/:id/info',
 ];
 
-const flatMenuKeys = getFlatMenuKeys(menu);
-
-describe('test convert nested menu to flat menu', () => {
-  it('simple menu', () => {
-    expect(flatMenuKeys).toEqual([
-      '/dashboard',
-      '/dashboard/name',
-      '/userinfo',
-      '/userinfo/:id',
-      '/userinfo/:id/info',
-    ]);
-  });
-});
-
-describe('test menu match', () => {
+describe('test meun match', () => {
   it('simple path', () => {
-    expect(getMenuMatchKeys(flatMenuKeys, urlToList('/dashboard'))).toEqual(['/dashboard']);
+    expect(getMeunMatcheys(meun, '/dashboard')).toEqual(['/dashboard']);
   });
-
   it('error path', () => {
-    expect(getMenuMatchKeys(flatMenuKeys, urlToList('/dashboardname'))).toEqual([]);
+    expect(getMeunMatcheys(meun, '/dashboardname')).toEqual([]);
   });
 
   it('Secondary path', () => {
-    expect(getMenuMatchKeys(flatMenuKeys, urlToList('/dashboard/name'))).toEqual([
-      '/dashboard',
+    expect(getMeunMatcheys(meun, '/dashboard/name')).toEqual([
       '/dashboard/name',
     ]);
   });
 
   it('Parameter path', () => {
-    expect(getMenuMatchKeys(flatMenuKeys, urlToList('/userinfo/2144'))).toEqual([
-      '/userinfo',
+    expect(getMeunMatcheys(meun, '/userinfo/2144')).toEqual([
       '/userinfo/:id',
     ]);
   });
 
   it('three parameter path', () => {
-    expect(getMenuMatchKeys(flatMenuKeys, urlToList('/userinfo/2144/info'))).toEqual([
-      '/userinfo',
-      '/userinfo/:id',
+    expect(getMeunMatcheys(meun, '/userinfo/2144/info')).toEqual([
       '/userinfo/:id/info',
     ]);
   });

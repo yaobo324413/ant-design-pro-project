@@ -48,7 +48,7 @@ export default class TimelineChart extends React.Component {
       .source(data)
       .transform({
         type: 'filter',
-        callback: obj => {
+        callback: (obj) => {
           const date = obj.x;
           return date <= ds.state.end && date >= ds.state.start;
         },
@@ -71,8 +71,8 @@ export default class TimelineChart extends React.Component {
 
     const timeScale = {
       type: 'time',
-      tickInterval: 60 * 60 * 1000,
-      mask: 'HH:mm',
+      tickCount: 10,
+      mask: 'HH:MM',
       range: [0, 1],
     };
 

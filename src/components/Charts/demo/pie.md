@@ -3,7 +3,7 @@ order: 5
 title: 饼状图
 ---
 
-```jsx
+````jsx
 import { Pie, yuan } from 'ant-design-pro/lib/Charts';
 
 const salesPieData = [
@@ -38,17 +38,10 @@ ReactDOM.render(
     hasLegend
     title="销售额"
     subTitle="销售额"
-    total={() => (
-      <span
-        dangerouslySetInnerHTML={{
-          __html: yuan(salesPieData.reduce((pre, now) => now.y + pre, 0))
-        }}
-      />
-    )}
+    total={yuan(salesPieData.reduce((pre, now) => now.y + pre, 0))}
     data={salesPieData}
-    valueFormat={val => <span dangerouslySetInnerHTML={{ __html: yuan(val) }} />}
+    valueFormat={val => yuan(val)}
     height={294}
-  />,
-  mountNode,
-);
-```
+  />
+, mountNode);
+````

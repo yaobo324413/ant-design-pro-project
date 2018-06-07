@@ -42,10 +42,6 @@ for (let i = 0; i < 7; i += 1) {
   });
 }
 
-const Yuan = ({ children }) => (
-  <span dangerouslySetInnerHTML={{ __html: yuan(children) }} /> /* eslint-disable-line react/no-danger */
-);
-
 @connect(({ chart, loading }) => ({
   chart,
   loading: loading.effects['chart/fetch'],
@@ -70,19 +66,19 @@ export default class Analysis extends Component {
     });
   }
 
-  handleChangeSalesType = e => {
+  handleChangeSalesType = (e) => {
     this.setState({
       salesType: e.target.value,
     });
   };
 
-  handleTabChange = key => {
+  handleTabChange = (key) => {
     this.setState({
       currentTabKey: key,
     });
   };
 
-  handleRangePickerChange = rangePickerValue => {
+  handleRangePickerChange = (rangePickerValue) => {
     this.setState({
       rangePickerValue,
     });
@@ -92,7 +88,7 @@ export default class Analysis extends Component {
     });
   };
 
-  selectDate = type => {
+  selectDate = (type) => {
     this.setState({
       rangePickerValue: getTimeDistance(type),
     });
@@ -256,7 +252,7 @@ export default class Analysis extends Component {
                   <Icon type="info-circle-o" />
                 </Tooltip>
               }
-              total={() => <Yuan>126560</Yuan>}
+              total={yuan(126560)}
               footer={<Field label="日均销售额" value={`￥${numeral(12423).format('0,0')}`} />}
               contentHeight={46}
             >
@@ -455,11 +451,9 @@ export default class Analysis extends Component {
               <Pie
                 hasLegend
                 subTitle="销售额"
-                total={
-                  () => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>
-                }
+                total={yuan(salesPieData.reduce((pre, now) => now.y + pre, 0))}
                 data={salesPieData}
-                valueFormat={value => <Yuan>{value}</Yuan>}
+                valueFormat={val => yuan(val)}
                 height={248}
                 lineWidth={4}
               />

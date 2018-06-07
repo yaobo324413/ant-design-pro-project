@@ -1,0 +1,31 @@
+@import "~antd/lib/style/themes/default.less";
+
+.tabList {
+  span {
+    background-repeat: no-repeat;
+    background-size: 40px;
+    padding-left: 40px;
+  }
+  :global {
+    .ant-tabs-tab {
+      font-size: 40px;
+      .tab1 {
+        background-image: url(../../assets/508417.png);
+      }
+      .tab2 {
+        background-image: url(../../assets/1180363.png);
+      }
+    }
+  }
+  
+  :global {
+    .ant-tabs-tab.ant-tabs-tab-active {
+      .tab1 {
+        background-image: url(../../assets/508421.png);
+      }
+      .tab2 {
+        background-image: url(../../assets/1180555.png);
+      }
+    }
+  }
+}

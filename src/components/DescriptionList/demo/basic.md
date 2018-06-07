@@ -1,17 +1,9 @@
 ---
 order: 0
-title:
-  zh-CN: 基本
-  en-US: Basic
+title: Basic
 ---
 
-## zh-CN
-
 基本描述列表。
-
-## en-US
-
-Basic DescriptionList.
 
 ````jsx
 import DescriptionList from 'ant-design-pro/lib/DescriptionList';

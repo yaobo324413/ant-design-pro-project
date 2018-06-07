@@ -7,7 +7,7 @@ import { getRoutes } from '../../utils/utils';
 
 @connect()
 export default class SearchList extends Component {
-  handleTabChange = key => {
+  handleTabChange = (key) => {
     const { dispatch, match } = this.props;
     switch (key) {
       case 'articles':
@@ -22,23 +22,19 @@ export default class SearchList extends Component {
       default:
         break;
     }
-  };
+  }
 
   render() {
-    const tabList = [
-      {
-        key: 'articles',
-        tab: '文章',
-      },
-      {
-        key: 'applications',
-        tab: '应用',
-      },
-      {
-        key: 'projects',
-        tab: '项目',
-      },
-    ];
+    const tabList = [{
+      key: 'articles',
+      tab: '文章',
+    }, {
+      key: 'applications',
+      tab: '应用',
+    }, {
+      key: 'projects',
+      tab: '项目',
+    }];
 
     const mainSearch = (
       <div style={{ textAlign: 'center' }}>
@@ -64,9 +60,18 @@ export default class SearchList extends Component {
         onTabChange={this.handleTabChange}
       >
         <Switch>
-          {routes.map(item => (
-            <Route key={item.key} path={item.path} component={item.component} exact={item.exact} />
-          ))}
+          {
+            routes.map(item =>
+              (
+                <Route
+                  key={item.key}
+                  path={item.path}
+                  component={item.component}
+                  exact={item.exact}
+                />
+              )
+            )
+          }
         </Switch>
       </PageHeaderLayout>
     );
